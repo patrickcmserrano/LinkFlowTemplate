@@ -9,7 +9,7 @@
       "name": "Projetos",
       "color": "#7e22ce",
       "links": [
-        { "title": "Portfólio Blog", "url": "https://github.com/patrickcmserrano/portfolio-blog", "icon": "/images/portfolio-icon.svg" },
+        { "title": "Portfólio Blog", "url": "https://patrickcmserrano.github.io/portfolio-blog/", "icon": "/images/portfolio-icon.svg" },
         { "title": "WebOasis", "url": "https://patrickcmserrano.github.io/weboasis/#/", "icon": "/images/weboasis-icon.svg" }
       ]
     },

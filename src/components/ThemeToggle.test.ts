@@ -55,7 +55,7 @@ function setTheme(mode: string) {
 
 function getThemeFromLocalStorage() {
   const savedMode = localStorage.getItem('mode');
-  return savedMode || 'dark'; // Default to dark if no saved preference
+  return savedMode || 'light'; // Default to light if no saved preference
 }
 
 function initTheme() {
@@ -76,26 +76,26 @@ describe('ThemeToggle functionality', () => {
     } as any;
   });
 
-  it('should initialize with dark mode by default', () => {
+  it('should initialize with light mode by default', () => {
     // Mock localStorage.getItem to return null (no saved preference)
     localStorageMock.getItem.mockReturnValue(null);
     
     // Test the function directly
     initTheme();
     
-    // Verify the dark theme was set'
-    expect(localStorageMock.setItem).toHaveBeenCalledWith('mode', 'dark');
-    expect(documentElementMock.setAttribute).toHaveBeenCalledWith('data-mode', 'dark');
+    // Verify the light theme was set
+    expect(localStorageMock.setItem).toHaveBeenCalledWith('mode', 'light');
+    expect(documentElementMock.setAttribute).toHaveBeenCalledWith('data-mode', 'light');
   });
 
   it('should load theme from localStorage on init', () => {
-    // Mock localStorage to return 'light'
-    localStorageMock.getItem.mockReturnValue('light');
+    // Mock localStorage to return 'dark'
+    localStorageMock.getItem.mockReturnValue('dark');
     
     // Test the function directly
     initTheme();
     
-    // Verify the light theme was set
-    expect(documentElementMock.setAttribute).toHaveBeenCalledWith('data-mode', 'light');
+    // Verify the dark theme was set
+    expect(documentElementMock.setAttribute).toHaveBeenCalledWith('data-mode', 'dark');
   });
 });

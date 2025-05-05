@@ -5,6 +5,7 @@
   import Section from './components/Section.svelte';
   import { _ } from './lib/i18n';
   import { onMount } from 'svelte';
+  import { Link } from '@lucide/svelte';
 
   // Inicializa o suporte a idiomas
   import { i18n } from './lib/i18n';
@@ -38,7 +39,10 @@
     <div class="avatar-container mx-auto w-20 h-20 rounded-full overflow-hidden mb-4">
       <img src={getImagePath(profile.avatar)} alt={profile.name} class="w-full h-full object-cover" />
     </div>
-    <h1 class="h1 text-2xl font-bold mb-2">{$_('app.title')}</h1>
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <Link size={24} class="text-blue-500" />
+      <h1 class="h1 text-2xl font-bold">{$_('app.title')}</h1>
+    </div>
     <p class="text-base opacity-80 max-w-xs mx-auto">{$_('app.subtitle')}</p>
   </div>
   

@@ -7,6 +7,9 @@
     // Sincroniza o estado do toggle com o modo atual do tema
     const storedMode = localStorage.getItem('mode') || 'light';
     isDarkMode = storedMode === 'dark';
+    
+    // Garante que o tema inicial seja aplicado
+    document.documentElement.setAttribute('data-mode', storedMode);
   });
 
   function handleThemeChange() {
@@ -22,6 +25,7 @@
 
 <svelte:head>
   <script>
+    // Aplicar tema salvo no carregamento da página
     const mode = localStorage.getItem('mode') || 'light';
     document.documentElement.setAttribute('data-mode', mode);
   </script>
@@ -34,7 +38,7 @@
     id="theme-toggle"
     aria-pressed={isDarkMode}
     aria-label="Alternar tema claro/escuro"
-    onClick={handleThemeChange}
+    on:click={handleThemeChange}
   >
     <span class="icon">
       {#if isDarkMode}
