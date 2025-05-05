@@ -1,7 +1,9 @@
 name: Deploy to GitHub Pages (CD)
 
 on:
-  # Only manually or workflow_dispatch
+  # Executa em push para a branch main e também manualmente
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       deploy_coverage:
