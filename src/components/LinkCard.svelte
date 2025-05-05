@@ -28,6 +28,12 @@
     font-family: 'Inter', 'Roboto', sans-serif;
   }
 
+  :global([data-mode="dark"]) .link-card {
+    color: var(--color-surface-50);
+    background-color: #2e3136 !important; /* Cor escura que combina com o tema Mona */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
   @media (max-width: 768px) {
     .link-card {
       width: 100%;
