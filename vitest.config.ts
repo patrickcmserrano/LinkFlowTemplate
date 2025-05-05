@@ -9,7 +9,11 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
     deps: {
-      inline: [/^svelte/, /@testing-library\/svelte/]
+      optimizer: {
+        web: {
+          include: [/^svelte/, /@testing-library\/svelte/]
+        }
+      }
     },
     coverage: {
       provider: 'v8',
