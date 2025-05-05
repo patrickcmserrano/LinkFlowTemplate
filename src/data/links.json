@@ -1,0 +1,25 @@
+{
+  "profile": {
+    "name": "Seu Nome",
+    "avatar": "/images/avatar.svg"
+  },
+  "sections": [
+    {
+      "name": "Projetos",
+      "color": "#E0F7FA",
+      "links": [
+        { "title": "Portfólio", "url": "https://seu-portfolio.com", "icon": "/images/portfolio-icon.svg" },
+        { "title": "WebOasis", "url": "https://weboasis.com", "icon": "/images/weboasis-icon.svg" }
+      ]
+    },
+    {
+      "name": "Redes Sociais",
+      "color": "#F0F4C3",
+      "links": [
+        { "title": "LinkedIn", "url": "https://linkedin.com/in/seu-perfil", "icon": "/images/linkedin-icon.svg" },
+        { "title": "GitHub", "url": "https://github.com/seu-usuario", "icon": "/images/github-icon.svg" },
+        { "title": "Twitter", "url": "https://twitter.com/seu-usuario", "icon": "/images/twitter-icon.svg" }
+      ]
+    }
+  ]
+}

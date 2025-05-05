@@ -1,11 +1,11 @@
 export default {
-  "app.title": "Template Svelte com Tema",
-  "app.subtitle": "Um modelo básico de aplicação Svelte com suporte a tema claro/escuro.",
-  "features.title": "Recursos Incluídos",
+  "app.title": "LinkFlow",
+  "app.subtitle": "Compartilhe todos os seus links importantes em um só lugar",
+  "features.title": "Meus Links",
   "features.theme": "Alternância de tema claro/escuro",
-  "features.accessibility": "Acessibilidade básica",
-  "features.typescript": "Suporte ao TypeScript",
-  "features.testing": "Testes unitários e e2e",
-  "features.i18n": "Suporte à internacionalização",
-  "footer.copyright": "© 2025 Template Svelte. Construído com Svelte."
+  "features.accessibility": "Acessibilidade aprimorada",
+  "features.typescript": "Construído com TypeScript",
+  "features.testing": "Carregamento otimizado",
+  "features.i18n": "Suporte a múltiplos idiomas",
+  "footer.copyright": "© 2025 LinkFlow. Todos os direitos reservados."
 };

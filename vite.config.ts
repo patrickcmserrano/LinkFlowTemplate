@@ -8,5 +8,5 @@ export default defineConfig({
     tailwindcss(),
     svelte(),
   ],
-  base: '/svelte-ts-skeleton-starter/', // Caminho base específico para o GitHub Pages
+  base: '/LinkFlow/', // Caminho base atualizado para LinkFlow
 });
