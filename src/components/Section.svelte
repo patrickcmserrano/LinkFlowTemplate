@@ -63,7 +63,7 @@
   function getContentBackgroundColor() {
     const isDarkMode = document.documentElement.getAttribute('data-mode') === 'dark';
     if (isDarkMode) {
-      return "rgba(24, 24, 27, 0.7)"; // Cor escura com transparência
+      return "rgba(15, 23, 42, 0.8)"; // Cor escura baseada no var(--app-background) com transparência
     }
     return `${color}33`; // Mantém o comportamento original com transparência
   }
@@ -108,6 +108,6 @@
   }
   
   :global([data-mode="dark"]) .section-content {
-    background-color: rgba(40, 40, 45, 0.7) !important;
+    background-color: rgba(30, 41, 59, 0.8) !important; /* Usando a cor do tema WebOasis */
   }
 </style>

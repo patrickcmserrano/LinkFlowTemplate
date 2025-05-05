@@ -3,3 +3,28 @@
 @import '@skeletonlabs/skeleton/optional/presets';
 @import '@skeletonlabs/skeleton/themes/mona';
 @custom-variant dark (&:where([data-mode="dark"], [data-mode="dark"] *));
+
+/* Tema WebOasis para o LinkFlow */
+:root {
+  --color-primary-300: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-700: #4338ca;
+  --color-surface-100: #f1f5f9;
+  --app-background: #ffffff;
+  --app-text: #0f172a;
+}
+
+[data-mode="dark"] {
+  --color-primary-300: #d8b4fe;
+  --color-primary-500: #a855f7;
+  --color-primary-700: #7e22ce;
+  --color-surface-100: #1e293b;
+  --app-background: #0f172a;
+  --app-text: #f8fafc;
+}
+
+/* Aplica as variáveis ao corpo do documento */
+body {
+  background-color: var(--app-background);
+  color: var(--app-text);
+}

@@ -88,10 +88,10 @@ describe('i18n Setup', () => {
     expect(Object.keys(i18n.translations)).toContain('es');
     expect(Object.keys(i18n.translations)).toContain('pt');
     
-    // Test some translations
-    expect(i18n.t('greeting', 'en')).toBe('Hello');
-    expect(i18n.t('welcome', 'es')).toBe('Bienvenido a la aplicación');
-    expect(i18n.t('language', 'pt')).toBe('Idioma');
+    // Test some translations with keys que existem nos arquivos de tradução
+    expect(i18n.t('app.title', 'en')).toBe('Patrick CM Serrano');
+    expect(i18n.t('features.title', 'en')).toBe('My Links');
+    expect(i18n.t('features.i18n', 'en')).toBe('Multiple language support');
   });
 
   it('should update localStorage and svelte-i18n locale when setLanguage is called', () => {
