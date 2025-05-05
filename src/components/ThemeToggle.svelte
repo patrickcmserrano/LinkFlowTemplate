@@ -1,7 +1,4 @@
 <script lang="ts">
-  import { Switch } from '@skeletonlabs/skeleton-svelte';
-  import IconMoon from '@lucide/svelte/icons/moon';
-  import IconSun from '@lucide/svelte/icons/sun';
   import { onMount } from 'svelte';
 
   let isDarkMode = $state(false);
@@ -12,9 +9,9 @@
     isDarkMode = storedMode === 'dark';
   });
 
-  function handleThemeChange(checked: boolean) {
-    isDarkMode = checked;
-    const mode = checked ? 'dark' : 'light';
+  function handleThemeChange() {
+    isDarkMode = !isDarkMode;
+    const mode = isDarkMode ? 'dark' : 'light';
     document.documentElement.setAttribute('data-mode', mode);
     localStorage.setItem('mode', mode);
   }
@@ -30,18 +27,87 @@
   </script>
 </svelte:head>
 
-<div aria-label="Theme toggle">
-  <Switch
-    name="theme"
-    checked={isDarkMode}
-    onCheckedChange={(e) => handleThemeChange(e.checked)}
-    controlActive="bg-surface-200"
+<div class="theme-toggle-container">
+  <button 
+    type="button"
+    class="theme-toggle"
+    id="theme-toggle"
+    aria-pressed={isDarkMode}
+    aria-label="Alternar tema claro/escuro"
+    onClick={handleThemeChange}
   >
-    {#snippet inactiveChild()}
-      <IconMoon size="14" />
-    {/snippet}
-    {#snippet activeChild()}
-      <IconSun size="14" />
-    {/snippet}
-  </Switch>
+    <span class="icon">
+      {#if isDarkMode}
+        <!-- Sol -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path>
+          <path d="m17.66 17.66 1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="m6.34 17.66-1.41 1.41"></path>
+          <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+      {:else}
+        <!-- Lua -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      {/if}
+    </span>
+  </button>
 </div>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  .theme-toggle-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-color, #333);
+  }
+  
+  :global(.dark) .theme-toggle {
+    border-color: var(--dark-border, #555);
+    color: var(--dark-text, #eee);
+  }
+  
+  .theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  :global(.dark) .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

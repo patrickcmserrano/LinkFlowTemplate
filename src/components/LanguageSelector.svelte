@@ -18,11 +18,13 @@
   });
 </script>
 
-<div class="language-selector">
+<div class="language-selector" role="group" aria-label="Seletor de idioma">
   <button 
     class={currentLocale === 'en' ? 'active' : ''} 
     on:click={() => setLanguage('en')}
     aria-label="English"
+    aria-pressed={currentLocale === 'en'}
+    type="button"
   >
     EN
   </button>
@@ -30,6 +32,8 @@
     class={currentLocale === 'pt' ? 'active' : ''} 
     on:click={() => setLanguage('pt')}
     aria-label="Português"
+    aria-pressed={currentLocale === 'pt'}
+    type="button"
   >
     PT
   </button>
@@ -37,6 +41,8 @@
     class={currentLocale === 'es' ? 'active' : ''} 
     on:click={() => setLanguage('es')}
     aria-label="Español"
+    aria-pressed={currentLocale === 'es'}
+    type="button"
   >
     ES
   </button>

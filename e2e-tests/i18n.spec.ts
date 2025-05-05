@@ -18,8 +18,9 @@ test.describe('Internationalization (i18n) Tests', () => {
   });
 
   test('should allow changing the language', async ({ page }) => {
-    // Record the main heading text for later comparison
+    // Get initial title and subtitle for comparison
     const initialTitle = await page.getByRole('heading', { level: 1 }).textContent();
+    const initialSubtitle = await page.getByText('Software Engineering').textContent();
     
     // Change to Portuguese
     const ptButton = page.getByRole('button', { name: 'Português' });
@@ -28,9 +29,9 @@ test.describe('Internationalization (i18n) Tests', () => {
     // Wait for the text to change (may need to adjust this time)
     await page.waitForTimeout(500);
     
-    // Check if the text has been updated
-    const titleAfterChange = await page.getByRole('heading', { level: 1 }).textContent();
-    expect(titleAfterChange).not.toBe(initialTitle);
+    // Check if the subtitle has been updated
+    const subtitleAfterChange = await page.getByText('Engenharia de Software').textContent();
+    expect(subtitleAfterChange).not.toBe(initialSubtitle);
     
     // Change to Spanish
     const esButton = page.getByRole('button', { name: 'Español' });
@@ -39,26 +40,26 @@ test.describe('Internationalization (i18n) Tests', () => {
     // Wait for the text to change
     await page.waitForTimeout(500);
     
-    // Check if the text has been updated again
-    const titleAfterSecondChange = await page.getByRole('heading', { level: 1 }).textContent();
-    expect(titleAfterSecondChange).not.toBe(initialTitle);
-    expect(titleAfterSecondChange).not.toBe(titleAfterChange);
+    // Check if the subtitle has been updated again
+    const subtitleAfterSecondChange = await page.getByText('Ingeniería de Software').textContent();
+    expect(subtitleAfterSecondChange).not.toBe(initialSubtitle);
+    expect(subtitleAfterSecondChange).not.toBe(subtitleAfterChange);
   });
 
   test('should display texts corresponding to the selected language', async ({ page }) => {
-    // Expected texts in each language (based on i18n.ts file)
+    // Expected texts in each language (based on locale files)
     const expectedTexts = {
       en: {
-        title: 'Svelte Template with Theme',
-        subtitle: 'A basic Svelte application template with light/dark theme support.'
+        title: 'Patrick CM Serrano',
+        subtitle: 'Software Engineering'
       },
       pt: {
-        title: 'Template Svelte com Tema',
-        subtitle: 'Um modelo básico de aplicação Svelte com suporte a tema claro/escuro.'
+        title: 'Patrick CM Serrano',
+        subtitle: 'Engenharia de Software'
       },
       es: {
-        title: 'Plantilla Svelte con Tema',
-        subtitle: 'Un modelo básico de aplicación Svelte con soporte para tema claro/oscuro.'
+        title: 'Patrick CM Serrano',
+        subtitle: 'Ingeniería de Software'
       }
     };
     
@@ -94,8 +95,8 @@ test.describe('Internationalization (i18n) Tests', () => {
     // Wait for the text to change
     await page.waitForTimeout(500);
     
-    // Record the heading text in Portuguese
-    const titleInPortuguese = await page.getByRole('heading', { level: 1 }).textContent();
+    // Record the subtitle text in Portuguese
+    const subtitleInPortuguese = await page.getByText('Engenharia de Software').textContent();
     
     // Reload the page
     await page.reload();
@@ -104,7 +105,7 @@ test.describe('Internationalization (i18n) Tests', () => {
     await page.waitForLoadState('networkidle');
     
     // Check if the text is still in Portuguese after reload
-    const titleAfterReload = await page.getByRole('heading', { level: 1 }).textContent();
-    expect(titleAfterReload).toBe(titleInPortuguese);
+    const subtitleAfterReload = await page.getByText('Engenharia de Software').textContent();
+    expect(subtitleAfterReload).toBe(subtitleInPortuguese);
   });
 });
