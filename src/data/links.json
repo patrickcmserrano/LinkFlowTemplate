@@ -1,26 +1,25 @@
 {
   "profile": {
-    "name": "Patrick CM Serrano",
-    "title": "Engenharia de Software",
-    "avatar": "/images/profile.jpg"
+    "name": "Nome do Usuário",
+    "title": "Título Profissional",
+    "avatar": "/images/avatar.svg"
   },
   "sections": [
     {
       "name": "Projetos",
       "color": "#7e22ce",
       "links": [
-        { "title": "Portfólio Blog", "url": "https://patrickcmserrano.github.io/portfolio-blog/", "icon": "/images/portfolio-icon.svg" },
-        { "title": "WebOasis", "url": "https://patrickcmserrano.github.io/weboasis/#/", "icon": "/images/weboasis-icon.svg" }
+        { "title": "Projeto 1", "url": "https://exemplo.com/projeto1", "icon": "/images/portfolio-icon.svg" },
+        { "title": "Projeto 2", "url": "https://exemplo.com/projeto2", "icon": "/images/weboasis-icon.svg" }
       ]
     },
     {
       "name": "Redes Sociais",
       "color": "#a855f7",
       "links": [
-        { "title": "LinkedIn", "url": "https://www.linkedin.com/in/patrickcmserrano/", "icon": "/images/linkedin-icon.svg" },
-        { "title": "GitHub", "url": "https://github.com/patrickcmserrano", "icon": "/images/github-icon.svg" },
-        { "title": "YouTube Pat Rocks", "url": "https://www.youtube.com/@pat_rocks", "icon": "/images/youtube-icon.svg" },
-        { "title": "YouTube CodeCraft", "url": "https://www.youtube.com/@codecraft_ofc", "icon": "/images/youtube-icon.svg" }
+        { "title": "LinkedIn", "url": "https://www.linkedin.com/in/seuusuario/", "icon": "/images/linkedin-icon.svg" },
+        { "title": "GitHub", "url": "https://github.com/seuusuario", "icon": "/images/github-icon.svg" },
+        { "title": "YouTube", "url": "https://www.youtube.com/@seucanal", "icon": "/images/youtube-icon.svg" }
       ]
     }
   ]

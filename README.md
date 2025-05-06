@@ -23,9 +23,10 @@ O LinkFlow é uma plataforma de compartilhamento de links que permite organizar 
 │   └── 📂 images/
 │       ├── avatar.svg                # Imagem de perfil do usuário
 │       ├── portfolio-icon.svg        # Ícone para links do portfólio
-│       ├── weboasis-icon.svg         # Ícone para WebOasis
+│       ├── weboasis-icon.svg         # Ícone para outros projetos
 │       ├── linkedin-icon.svg         # Ícone para LinkedIn
 │       ├── github-icon.svg           # Ícone para GitHub
+│       ├── youtube-icon.svg          # Ícone para YouTube
 │       └── twitter-icon.svg          # Ícone para Twitter
 ├── 📂 src/
 │   ├── 📂 components/
@@ -72,14 +73,15 @@ Os links são configurados através do arquivo JSON em `src/data/links.json` que
 {
   "profile": {
     "name": "Seu Nome",
+    "title": "Título Profissional",
     "avatar": "/images/avatar.svg"
   },
   "sections": [
     {
       "name": "Projetos",
-      "color": "#E0F7FA",
+      "color": "#7e22ce",
       "links": [
-        { "title": "Portfólio", "url": "https://seu-portfolio.com", "icon": "/images/portfolio-icon.svg" },
+        { "title": "Projeto 1", "url": "https://exemplo.com/projeto1", "icon": "/images/portfolio-icon.svg" },
         // ... mais links
       ]
     },
