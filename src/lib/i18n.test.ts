@@ -89,7 +89,7 @@ describe('i18n Setup', () => {
     expect(Object.keys(i18n.translations)).toContain('pt');
     
     // Test some translations with keys que existem nos arquivos de tradução
-    expect(i18n.t('app.title', 'en')).toBe('Patrick CM Serrano');
+    expect(i18n.t('app.title', 'en')).toBe('User Name');
     expect(i18n.t('features.title', 'en')).toBe('My Links');
     expect(i18n.t('features.i18n', 'en')).toBe('Multiple language support');
   });
