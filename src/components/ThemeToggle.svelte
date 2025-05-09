@@ -38,7 +38,7 @@
     id="theme-toggle"
     aria-pressed={isDarkMode}
     aria-label="Alternar tema claro/escuro"
-    on:click={handleThemeChange}
+    onclick={handleThemeChange}
   >
     <span class="icon">
       {#if isDarkMode}
@@ -65,18 +65,10 @@
 </div>
 
 <style>
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
-  
+  /* 
+   * A classe sr-only está sendo usada por outros componentes,
+   * mantida aqui para referência e possível uso futuro
+   */
   .theme-toggle-container {
     display: flex;
     align-items: center;

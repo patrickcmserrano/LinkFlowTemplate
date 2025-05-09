@@ -18,6 +18,12 @@ dist/
 # Editors
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.history/
+*.sublime-*
+*.code-workspace
 .idea/
 *.suo
 *.ntvs*
@@ -25,7 +31,55 @@ dist/
 *.sln
 *.sw?
 
+# Test related
+coverage/
+.nyc_output/
+**/__snapshots__/
+*.snap
+test-results/
+reports/
+junit.xml
+cypress/videos/
+cypress/screenshots/
+playwright-report/
+test-report.xml
+
+# Dependências e lockfiles específicos
+.pnp/
+.pnp.js
+bower_components/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Arquivos de configuração de deploy
+.vercel
+.netlify
+.firebase/
+.serverless/
+.env.production
+
+# Bancos de dados locais
+*.sqlite
+*.sqlite3
+*.db
+
+# Caches adicionais
+.eslintcache
+.stylelintcache
+.parcel-cache
+.next/
+.nuxt/
+
+# Temporários
+tmp/
+temp/
+
 # OS specific
 .DS_Store
 Thumbs.db
 Desktop.ini
+$RECYCLE.BIN/
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump

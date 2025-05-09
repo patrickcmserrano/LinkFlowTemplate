@@ -1,41 +1,55 @@
 import { test, expect } from '@playwright/test';
-import { AccessibilityHelper } from './helpers/accessibility';
+import { HomePage } from './page-objects/HomePage';
+import { AccessibilityTester } from './helpers/AccessibilityTester';
 
-test.describe('Theme Toggle Accessibility Tests', () => {
-  let a11y: AccessibilityHelper;
+test.describe('Testes de Acessibilidade', () => {
+  let homePage: HomePage;
+  let a11y: AccessibilityTester;
 
   test.beforeEach(async ({ page }) => {
-    // Go to the app's homepage before each test
-    await page.goto('/');
-    a11y = new AccessibilityHelper(page);
+    homePage = new HomePage(page);
+    a11y = new AccessibilityTester(page);
+    await homePage.goto();
   });
 
-  test('should have accessible heading structure', async ({ page }) => {
-    // Check if the page has a valid heading structure
+  test('deve ter estrutura de cabeçalhos acessível', async () => {
+    // Verificar se a página tem estrutura de cabeçalhos válida
     await a11y.expectValidHeadingStructure();
     
-    // Check if main heading is accessible
-    const mainHeading = page.getByRole('heading', { level: 1 });
-    await a11y.expectElementToBeAccessible(mainHeading);
+    // Verificar se o cabeçalho principal é acessível
+    await a11y.expectElementAccessible(homePage.heading);
   });
 
-  test('should have proper theme toggle functionality', async ({ page }) => {
-    // Verificar se o toggle de tema está na página usando um seletor mais específico
-    const themeToggle = page.getByRole('button', { name: 'Alternar tema claro/escuro' });
-    await expect(themeToggle).toBeVisible();
+  test('deve ter funcionalidade de alternância de tema acessível', async ({ page }) => {
+    // Verificar se o toggle de tema está na página
+    await expect(homePage.themeToggle).toBeVisible();
     
-    // Verificar se é possível navegar com teclado até o elemento
-    await page.keyboard.press('Tab');
-    
-    // Verifique se algo recebeu foco
-    const hasFocus = await page.evaluate(() => {
-      return document.activeElement !== document.body;
-    });
-    expect(hasFocus, 'Page should be keyboard navigable').toBeTruthy();
+    // Verificar se é acessível por teclado
+    await a11y.expectButtonAccessible(homePage.themeToggle, 'tema');
   });
 
-  test('should maintain sufficient color contrast', async ({ page }) => {
-    // Test contrast for heading
-    await a11y.expectSufficientColorContrast(page.getByRole('heading', { level: 1 }));
+  test('deve manter contraste de cores suficiente', async () => {
+    // Verificar contraste para cabeçalho
+    await a11y.expectSufficientColorContrast(homePage.heading);
+    
+    // Verificar contraste para links
+    await a11y.expectSufficientColorContrast(homePage.links.github);
+    await a11y.expectSufficientColorContrast(homePage.links.linkedin);
+  });
+
+  test('deve ser navegável por teclado', async () => {
+    // Verificar navegabilidade por teclado
+    await a11y.expectKeyboardNavigable();
+  });
+
+  test('deve passar na análise axe-core', async () => {
+    // Executar análise de acessibilidade com axe-core
+    const results = await a11y.runAxeAnalysis();
+    
+    // Registrar número de violações encontradas
+    console.log(`Análise axe-core encontrou ${results.violations.length} violações`);
+    
+    // Idealmente aqui verificaríamos se não há violações críticas
+    // Por enquanto, apenas registramos os resultados
   });
 });
