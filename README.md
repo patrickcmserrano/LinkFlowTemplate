@@ -188,6 +188,54 @@ Toda interação possível com mouse foi cuidadosamente implementada para ser ig
 
 4. Acesse o aplicativo em `http://localhost:5173/LinkFlow/`
 
+### Deploy no GitHub Pages
+
+Para publicar o LinkFlow no GitHub Pages, siga estas etapas:
+
+1. Crie um repositório no GitHub para o seu projeto
+
+2. Configure a base URL no arquivo `vite.config.js`:
+   ```js
+   export default defineConfig({
+     plugins: [svelte()],
+     base: '/nome-do-seu-repositorio/', // Substitua pelo nome do seu repositório
+     // outras configurações
+   });
+   ```
+
+3. Adicione um script de deploy no seu `package.json`:
+   ```json
+   "scripts": {
+     "dev": "vite",
+     "build": "vite build",
+     "deploy": "gh-pages -d dist",
+     // outros scripts
+   }
+   ```
+
+4. Instale a dependência gh-pages:
+   ```bash
+   yarn add --dev gh-pages
+   ```
+
+5. Faça o build e deploy:
+   ```bash
+   yarn build
+   yarn deploy
+   ```
+
+6. Configure o GitHub Pages nas configurações do repositório:
+   - Acesse a aba "Settings" do seu repositório
+   - Navegue até "Pages" no menu lateral
+   - Em "Source", selecione a branch `gh-pages`
+   - Clique em "Save"
+
+7. Seu site estará disponível em `https://seu-usuario.github.io/nome-do-repositorio/`
+
+Observações:
+- Certifique-se de que todas as referências a arquivos no código estejam utilizando caminhos relativos
+- Para domínios personalizados, consulte a [documentação do GitHub Pages](https://docs.github.com/pt/pages/configuring-a-custom-domain-for-your-github-pages-site)
+
 ### Personalização
 
 Para personalizar seus links:
