@@ -5,6 +5,8 @@
     locale.set(lang);
     // Saves the preference in localStorage
     localStorage.setItem('preferredLanguage', lang);
+    // Atualiza o atributo lang do documento para melhorar a acessibilidade e facilitar os testes
+    document.documentElement.lang = lang;
   }
 
   // Gets the current language
@@ -14,6 +16,8 @@
     // Ensures that value is always string
     if (value) {
       currentLocale = value;
+      // Atualiza o atributo lang também ao receber atualizações do store
+      document.documentElement.lang = value;
     }
   });
 </script>

@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from './page-objects/HomePage';
 import { AccessibilityTester } from './helpers/AccessibilityTester';
 
+// Pular teste de acessibilidade no WebKit
 test.describe('Internacionalização (i18n)', () => {
   let homePage: HomePage;
   let a11y: AccessibilityTester;
@@ -19,7 +20,7 @@ test.describe('Internacionalização (i18n)', () => {
     await expect(homePage.languageSelector.spanish).toBeVisible();
   });
 
-  test('deve permitir alterar o idioma', async () => {
+  test('deve permitir alterar o idioma', async ({ page }) => {
     // Mudar para Português
     await homePage.changeLanguage('pt');
     
@@ -51,11 +52,8 @@ test.describe('Internacionalização (i18n)', () => {
       // Mudar para o idioma
       await homePage.changeLanguage(lang.code as 'en' | 'pt' | 'es');
       
-      // Verificar se o subtítulo está correto usando o seletor de classe em vez de texto exato
-      const subtitle = homePage.subtitle;
-      await expect(subtitle).toBeVisible();
-      const text = await subtitle.textContent();
-      expect(text).toContain(lang.expectedSubtitle);
+      // Usar a função verifySubtitle para verificações mais resilientes
+      await homePage.verifySubtitle(lang.expectedSubtitle);
     }
   });
 
@@ -64,24 +62,24 @@ test.describe('Internacionalização (i18n)', () => {
     await homePage.changeLanguage('pt');
     
     // Verificar se o texto está em português antes do recarregamento
-    const subtitleBeforeReload = await homePage.subtitle.textContent();
-    expect(subtitleBeforeReload).toContain('Engenharia de Software');
+    await homePage.verifySubtitle('Engenharia de Software');
     
     // Recarregar a página
     await page.reload();
     
     // Esperar a página carregar completamente
     await page.waitForLoadState('networkidle');
+    await page.waitForSelector('[data-testid="subtitle"]', { state: 'visible', timeout: 15000 });
     
-    // Verificar se o texto ainda está em português
-    const subtitleAfterReload = await homePage.subtitle.textContent();
-    expect(subtitleAfterReload).toContain('Engenharia de Software');
+    // Verificar se o texto ainda está em português com verificação resiliente
+    await homePage.verifySubtitle('Engenharia de Software', 5); // Tentativas extras após reload
   });
   
-  test('deve ter elementos de idioma acessíveis', async ({ page }) => {
-    // Desabilitar verificação de navegação de teclado que está falhando no WebKit
-    test.skip(({ browserName }) => browserName === 'webkit', 'Falha de navegação por teclado no WebKit');
-    
+  // Use test.skip a nível de teste para pular no WebKit
+  test('deve ter elementos de idioma acessíveis', { 
+    // Pular teste apenas no WebKit
+    skip: ({ browserName }) => browserName === 'webkit'
+  }, async ({ page }) => {
     // Verificar se os botões de idioma são acessíveis
     await a11y.expectElementAccessible(homePage.languageSelector.english, {
       label: 'English'

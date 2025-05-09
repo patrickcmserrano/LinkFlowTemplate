@@ -3,13 +3,24 @@
   import ThemeToggle from './components/ThemeToggle.svelte';
   import LanguageSelector from './components/LanguageSelector.svelte';
   import Section from './components/Section.svelte';
-  import { _ } from './lib/i18n';
+  import { _, locale } from './lib/i18n';
   import { onMount } from 'svelte';
   import { Link } from '@lucide/svelte';
 
   // Inicializa o suporte a idiomas
   import { i18n } from './lib/i18n';
   i18n.initialize();
+  
+  // Define o atributo lang no HTML quando o componente é montado
+  onMount(() => {
+    // Carrega a preferência de idioma do localStorage
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang) {
+      document.documentElement.lang = savedLang;
+    } else {
+      document.documentElement.lang = 'en';
+    }
+  });
 
   // Carrega os dados do arquivo links.json
   import linksData from './data/links.json';
@@ -25,7 +36,7 @@
   };
 </script>
 
-<main class="min-h-screen max-w-md mx-auto px-4 py-6 space-y-6">
+<main lang={$locale} class="min-h-screen max-w-md mx-auto px-4 py-6 space-y-6">
   <div class="flex justify-between items-center mb-8">
     <div class="language-selector">
       <LanguageSelector />
@@ -43,7 +54,7 @@
       <Link size={24} class="text-blue-500" />
       <h1 class="h1 text-2xl font-bold">{$_('app.title')}</h1>
     </div>
-    <p class="text-base opacity-80 max-w-xs mx-auto">{$_('app.subtitle')}</p>
+    <p data-testid="subtitle" class="text-base opacity-80 max-w-xs mx-auto">{$_('app.subtitle')}</p>
   </div>
   
   <div class="sections space-y-4">

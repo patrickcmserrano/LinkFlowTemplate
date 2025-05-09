@@ -1,6 +1,6 @@
 export default {
   "app.title": "User Name",
-  "app.subtitle": "Professional Title",
+  "app.subtitle": "Software Engineering",
   "features.title": "My Links",
   "features.theme": "Light/dark theme toggle",
   "features.accessibility": "Enhanced accessibility",

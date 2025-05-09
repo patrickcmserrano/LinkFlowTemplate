@@ -1,6 +1,6 @@
 export default {
   "app.title": "Nome do Usuário",
-  "app.subtitle": "Título Profissional",
+  "app.subtitle": "Engenharia de Software",
   "features.title": "Meus Links",
   "features.theme": "Alternância de tema claro/escuro",
   "features.accessibility": "Acessibilidade aprimorada",
