@@ -92,32 +92,79 @@ Os links são configurados através do arquivo JSON em `src/data/links.json` que
 
 ## Testes
 
-O LinkFlow inclui testes unitários e end-to-end (E2E) completos para garantir a qualidade do código.
+O LinkFlow inclui testes unitários e end-to-end (E2E) completos para garantir a qualidade do código e a conformidade com padrões de acessibilidade.
 
 ### Testes Unitários
 
 Utilizamos o [Vitest](https://vitest.dev/) para testes unitários com cobertura para:
-- Componente `LinkCard`: renderização correta e comportamento visual
-- Componente `Section`: expansão/colapso e renderização de links
-- Sistema de internacionalização: mudança de idiomas e traduções
+- Componente `LinkCard`: renderização correta, comportamento visual e atributos de acessibilidade
+- Componente `Section`: expansão/colapso, renderização de links e atributos ARIA apropriados
+- Sistema de internacionalização: mudança de idiomas, traduções e persistência de preferências
 - Alternância de temas: funcionamento correto do tema claro/escuro
+- Validação de dados: verificação da estrutura e integridade dos dados de links
 
 ### Testes End-to-End (E2E)
 
 Utilizamos o [Playwright](https://playwright.dev/) para testes E2E que verificam:
-- Funcionalidade de expansão e colapso das seções de links
-- Abertura de links em novas abas
-- Acessibilidade de todos os elementos interativos
+- Funcionalidade de expansão e colapso das seções de links com feedback visual e ARIA
+- Abertura de links em novas abas com atributos apropriados
 - Comportamento responsivo em diferentes tamanhos de tela
-- Compatibilidade com diferentes navegadores
+- Compatibilidade com diferentes navegadores (Chromium, Firefox e WebKit)
+- Persistência de preferências de usuário entre sessões
 
 ### Testes de Acessibilidade
 
-Testes específicos para garantir a acessibilidade do aplicativo, verificando:
-- Contraste adequado nos elementos visuais
-- Navegação por teclado em todos os componentes
-- Atributos ARIA apropriados nos elementos interativos
-- Tamanho de toque adequado para dispositivos móveis
+Implementamos uma abordagem abrangente para testes de acessibilidade, incluindo:
+
+#### Testes Automatizados
+- Integração com **axe-core** para detecção automática de problemas de acessibilidade
+- Verificação da estrutura correta de cabeçalhos (h1, h2, etc.)
+- Validação de contraste de cores em elementos visuais
+- Verificação de atributos ARIA nos componentes interativos
+
+#### Testes de Interação por Teclado
+- Navegabilidade completa usando apenas o teclado
+- Focabilidade adequada de todos os elementos interativos
+- Comportamento esperado para teclas Tab, Enter e Espaço
+- Contraste visual do indicador de foco em todos os temas
+
+#### Testes de Compatibilidade
+- Verificação de funcionalidades em diferentes navegadores
+- Testes específicos para contornar limitações do WebKit
+- Verificação resiliente com retentativas para testes instáveis
+
+#### Internacionalização e Acessibilidade
+- Manutenção de acessibilidade em todos os idiomas suportados
+- Verificação de nomes acessíveis apropriados em cada idioma
+- Persistência de foco ao alternar entre idiomas
+- Textos alternativos adequados em todos os idiomas
+
+O framework de teste inclui classes auxiliares personalizadas (`AccessibilityTester`) que facilitam a implementação consistente de verificações de acessibilidade em toda a aplicação.
+
+## Acessibilidade Navegável por Teclado
+
+O LinkFlow foi implementado com foco especial na navegabilidade por teclado, um aspecto fundamental para garantir a acessibilidade universal.
+
+### Navegação por Teclado no Chromium
+
+A implementação para o navegador Chromium inclui:
+
+- **Ordem de Tabulação Lógica**: Os elementos interativos seguem uma ordem natural de tabulação, de cima para baixo e da esquerda para a direita
+- **Indicadores Visuais de Foco**: Contorno de alto contraste em elementos focados, visíveis em ambos os temas (claro e escuro)
+- **Atalhos de Teclado**:
+  - `Tab`: Navega para o próximo elemento interativo
+  - `Shift+Tab`: Navega para o elemento interativo anterior
+  - `Enter/Space`: Ativa botões e links
+  - `Esc`: Fecha menus ou diálogos abertos
+
+### Recursos de Navegabilidade
+
+- **Skip Links**: Links ocultos que aparecem ao receber foco, permitindo pular para seções principais
+- **Persistência de Foco**: Manutenção do foco no elemento correto após interações como expansão/colapso de seções
+- **Captura de Foco**: Em modais e diálogos, o foco é capturado dentro do contexto para evitar navegação fora da área ativa
+- **ARIA Live Regions**: Anúncios dinâmicos para leitores de tela quando ocorrem mudanças importantes na interface
+
+Toda interação possível com mouse foi cuidadosamente implementada para ser igualmente acessível via teclado, garantindo que usuários com diferentes necessidades possam navegar com eficiência pelo aplicativo.
 
 ## Instruções de Uso
 
